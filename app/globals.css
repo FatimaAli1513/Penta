@@ -1,11 +1,14 @@
 :root {
-  --background: #f6f8fb;
-  --foreground: #172033;
-  --muted: #64748b;
-  --primary: #1067d8;
-  --primary-dark: #074aa1;
+  --background: #f6f3ee;
+  --foreground: #18212f;
+  --muted: #65707f;
+  --primary: #0b5f63;
+  --primary-dark: #08484b;
+  --accent: #c58a2d;
   --card: #ffffff;
-  --border: #dbe4ef;
+  --border: #e1ded7;
+  --soft: #eef4f2;
+  --shadow: rgba(24, 33, 47, 0.1);
 }
 
 * {
@@ -29,26 +32,32 @@ a {
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 92vh;
   padding: 28px clamp(20px, 5vw, 72px) 80px;
   background:
-    radial-gradient(circle at 80% 15%, rgba(16, 103, 216, 0.18), transparent 30%),
-    linear-gradient(135deg, #ffffff 0%, #eef5ff 52%, #dbeafe 100%);
+    radial-gradient(circle at 88% 18%, rgba(197, 138, 45, 0.15), transparent 28%),
+    radial-gradient(circle at 78% 78%, rgba(11, 95, 99, 0.16), transparent 32%),
+    linear-gradient(135deg, #fffdfa 0%, #f6f3ee 58%, #e8efed 100%);
 }
 
 .nav {
   align-items: center;
+  background: rgba(255, 253, 250, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 999px;
+  box-shadow: 0 16px 40px rgba(24, 33, 47, 0.06);
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1180px;
+  padding: 14px 18px 14px 22px;
 }
 
 .brand {
   color: var(--primary);
   font-size: 1.45rem;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .navLinks {
@@ -66,9 +75,9 @@ a {
 .heroGrid {
   align-items: center;
   display: grid;
-  gap: 48px;
-  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-  margin: 96px auto 0;
+  gap: clamp(36px, 5vw, 64px);
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 0.88fr);
+  margin: 78px auto 0;
   max-width: 1180px;
 }
 
@@ -76,14 +85,15 @@ a {
 .sectionHeader h2,
 .splitSection h2,
 .contact h2 {
-  letter-spacing: -0.055em;
+  letter-spacing: 0;
   line-height: 1;
   margin: 0;
 }
 
 .heroContent h1 {
-  font-size: clamp(3rem, 8vw, 6.8rem);
-  max-width: 850px;
+  font-size: clamp(2.75rem, 6.4vw, 5.55rem);
+  line-height: 0.98;
+  max-width: 660px;
 }
 
 .eyebrow {
@@ -97,17 +107,34 @@ a {
 
 .lead {
   color: var(--muted);
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.7;
-  margin: 28px 0 0;
-  max-width: 660px;
+  font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+  line-height: 1.65;
+  margin: 24px 0 0;
+  max-width: 590px;
+}
+
+.heroStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.heroStats span {
+  background: rgba(255, 253, 250, 0.78);
+  border: 1px solid rgba(11, 95, 99, 0.14);
+  border-radius: 999px;
+  color: #274043;
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 10px 14px;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 36px;
+  margin-top: 30px;
 }
 
 .button {
@@ -118,12 +145,20 @@ a {
   justify-content: center;
   min-height: 52px;
   padding: 0 24px;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
 }
 
 .button.primary {
   background: var(--primary);
   color: white;
-  box-shadow: 0 16px 32px rgba(16, 103, 216, 0.28);
+  box-shadow: 0 16px 32px rgba(11, 95, 99, 0.22);
 }
 
 .button.primary:hover {
@@ -131,36 +166,82 @@ a {
 }
 
 .button.secondary {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 253, 250, 0.76);
   border: 1px solid var(--border);
   color: var(--foreground);
 }
 
-.heroCard {
-  background: rgba(255, 255, 255, 0.78);
+.heroVisual {
+  min-height: 520px;
+  position: relative;
+}
+
+.heroPhoto,
+.cardImage,
+.qualityPanel {
+  overflow: hidden;
+}
+
+.heroPhoto {
+  background: white;
   border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 34px;
-  box-shadow: 0 30px 80px rgba(23, 32, 51, 0.14);
-  min-height: 420px;
-  padding: 36px;
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(24, 33, 47, 0.16);
+  position: absolute;
 }
 
-.heroCard span {
-  color: var(--primary);
+.heroPhoto img,
+.cardImage img,
+.qualityPanel > img {
   display: block;
-  font-size: 0.9rem;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.heroPhotoMain {
+  aspect-ratio: 0.72;
+  left: 0;
+  top: 0;
+  width: min(72%, 430px);
+}
+
+.heroPhotoSmall {
+  aspect-ratio: 1.12;
+  bottom: 34px;
+  right: 0;
+  width: min(48%, 260px);
+}
+
+.heroBadge {
+  background: rgba(255, 253, 250, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  bottom: 0;
+  box-shadow: 0 18px 42px rgba(24, 33, 47, 0.12);
+  left: 30%;
+  max-width: 300px;
+  padding: 22px;
+  position: absolute;
+}
+
+.heroBadge span {
+  color: var(--accent);
+  display: block;
+  font-size: 0.75rem;
   font-weight: 800;
-  margin-bottom: 90px;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
-.heroCard strong {
+.heroBadge strong {
   display: block;
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  letter-spacing: -0.055em;
-  line-height: 1.02;
+  font-size: 1.35rem;
+  line-height: 1.15;
 }
 
-.heroCard p,
+.heroBadge p,
 .splitSection p,
 .contact p,
 .card p {
@@ -173,7 +254,7 @@ a {
 .contact {
   margin: 0 auto;
   max-width: 1180px;
-  padding: 90px clamp(20px, 5vw, 40px);
+  padding: 84px clamp(20px, 5vw, 40px);
 }
 
 .sectionHeader {
@@ -183,12 +264,13 @@ a {
 .sectionHeader h2,
 .splitSection h2,
 .contact h2 {
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-size: clamp(2.15rem, 4vw, 3.75rem);
+  line-height: 1.05;
 }
 
 .cards {
   display: grid;
-  gap: 18px;
+  gap: 20px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 42px;
 }
@@ -196,13 +278,37 @@ a {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 26px;
+  border-radius: 8px;
+  box-shadow: 0 16px 34px rgba(24, 33, 47, 0.05);
+  padding: 14px;
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.card:hover {
+  box-shadow: 0 22px 42px var(--shadow);
+  transform: translateY(-3px);
+}
+
+.cardImage {
+  aspect-ratio: 1;
+  background: var(--soft);
+  border-radius: 6px;
+  margin-bottom: 20px;
 }
 
 .card h3 {
-  font-size: 1.2rem;
+  font-size: 1.12rem;
+  line-height: 1.25;
   margin: 0;
+  padding: 0 8px;
+}
+
+.card p {
+  font-size: 0.96rem;
+  margin-bottom: 0;
+  padding: 0 8px 8px;
 }
 
 .splitSection {
@@ -210,6 +316,25 @@ a {
   display: grid;
   gap: 56px;
   grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+}
+
+.qualityCopy {
+  position: sticky;
+  top: 28px;
+}
+
+.qualityPanel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(24, 33, 47, 0.08);
+  padding: 14px;
+}
+
+.qualityPanel > img {
+  aspect-ratio: 1.45;
+  border-radius: 6px;
+  margin-bottom: 14px;
 }
 
 .featureList {
@@ -221,16 +346,19 @@ a {
 }
 
 .featureList li {
-  background: var(--card);
+  background: #faf8f4;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 8px;
+  color: #26363a;
   font-weight: 800;
   padding: 20px 22px;
 }
 
 .contact {
-  background: var(--foreground);
-  border-radius: 36px;
+  background:
+    radial-gradient(circle at 16% 20%, rgba(197, 138, 45, 0.34), transparent 24%),
+    linear-gradient(135deg, #18212f 0%, #123f42 100%);
+  border-radius: 8px;
   color: white;
   margin-bottom: 40px;
   text-align: center;
@@ -247,6 +375,10 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .heroContent h1 {
+    max-width: 760px;
+  }
+
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -254,7 +386,8 @@ a {
 
 @media (max-width: 620px) {
   .nav {
-    align-items: flex-start;
+    align-items: center;
+    border-radius: 18px;
     gap: 18px;
   }
 
@@ -269,18 +402,41 @@ a {
   }
 
   .heroGrid {
-    margin-top: 64px;
+    margin-top: 54px;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(2.35rem, 13vw, 3.85rem);
+    line-height: 1.02;
+  }
+
+  .lead {
+    margin-top: 20px;
+  }
+
+  .qualityCopy {
+    position: static;
   }
 
   .cards {
     grid-template-columns: 1fr;
   }
 
-  .heroCard {
-    min-height: auto;
+  .heroVisual {
+    min-height: 520px;
   }
 
-  .heroCard span {
-    margin-bottom: 60px;
+  .heroBadge {
+    left: 8%;
+    right: 8%;
+  }
+
+  .heroPhotoMain {
+    width: 70%;
+  }
+
+  .heroPhotoSmall {
+    bottom: 80px;
+    width: 45%;
   }
 }
