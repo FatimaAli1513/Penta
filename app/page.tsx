@@ -162,7 +162,7 @@ export default function Home() {
           Contact Penta to discuss product requirements, wholesale quantities,
           export needs, or custom manufacturing.
         </p>
-        <a className="button primary" href="mailto:info@penta.com">
+        <a className="button primary" href="tel:03227206109">
           Contact Us at 0322 7206109
         </a>
       </section>
